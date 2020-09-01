@@ -29,12 +29,12 @@
                             v-for="items in products.catalogEntryView"
                             v-bind:key="items.uniqueID"
                             class="el el-3"
-                            >
+                        >
                             <a :href="items.resourceId">
-                            <img class="" :src="rootDir + items.thumbnail" :alt="items.name" />
+                                <img class="" :src="rootDir + items.thumbnail" :alt="items.name" />
                             </a>
                             <a class="product-name" :href="items.resourceId">
-                            {{ items.name }}
+                                {{ items.name }}
                             </a>
                             <p>Retail price
                                 <span class="currency-symbol">
@@ -56,9 +56,9 @@
     </div>
 </template>
 <script>
-import axios from 'axios';
+    import axios from 'axios';
 
-import testData from '../data/mockData.json';
+    const testData = '../data/mockData.json';
 
     export default {
         name: 'RetrieveProductData',
@@ -78,20 +78,20 @@ import testData from '../data/mockData.json';
                 if (value === 'USD') {
                     return '$';
                 } if (value === 'GBP') {
-                    return '&pound;';
+                    return '£';
                 } if (value === 'YEN') {
-                    return '&yen;';
+                    return '¥';
+                } else {
+                    return '';
                 }
                 return value;
             },
         },
         mounted() {
             axios
-            // .get(`https://www.demo.salmon-gcp.com/search/resources/store/1/productview/byCategory/${this.productCategory}?langId=-1&catalogId=${this.productCatalogId}&currency=${this.productCurrency}&responseFormat=json`)
             .get(testData)
             .then((response) => {
                 this.products = response.data;
-                console.log(response.data);
             }).catch(() => {
                 this.errored = true;
             }).finally(() => {
@@ -128,6 +128,7 @@ import testData from '../data/mockData.json';
 
     @include tablet($tablet-size) {
         .RetrieveProductData {
+
             img {
                 width: 100%;
             }
