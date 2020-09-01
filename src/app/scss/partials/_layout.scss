@@ -1,0 +1,61 @@
+
+/*
+* Product Application
+* Client: Wunderman Thompson Commerce
+* Date: Aug 2019
+* Copyright (C) Luke Harby
+* mailto:lharby@gmail.com
+*/
+
+/* layout */
+* {
+    box-sizing:border-box;
+    padding:0;
+    margin:0;
+}
+
+body {
+    margin:0;
+    padding:0;
+    font-weight:100;
+}
+
+a {
+
+  &:link,
+  &:visited {
+    @include hover(all, 400ms, ease-in);
+    color: $lightGreen;
+  }
+
+  &:hover {
+    color: $green;
+  }
+
+  &.active {
+    color: $orange;
+  }
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.wrapper {
+  margin: 40px;
+}
+
+.error-message {
+  color: $orange;
+}
+
+@include tablet($tablet-size) {
+  .title {
+    background-color: $orange;
+    padding: $defaultPadding;
+    text-align: center;
+    color: $white;
+  }
+}
