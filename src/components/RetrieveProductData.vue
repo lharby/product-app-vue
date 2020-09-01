@@ -58,7 +58,7 @@
 <script>
 import axios from 'axios';
 
-import testData from '../data/mockData';
+import testData from '../data/mockData.json';
 
     export default {
         name: 'RetrieveProductData',
