@@ -40,8 +40,12 @@
                 </li>
                 <li>
                     <ul class="el el-10">
+                        <li v-if="remoteFail">
+                            Some error
+                        </li>
                         <li
                             v-for="items in products.catalogEntryView"
+                            v-else
                             :key="items.uniqueID"
                             class="el el-3"
                         >
@@ -104,6 +108,7 @@
                 products: null,
                 loading: true,
                 errored: false,
+                remoteFail: false,
                 rootDir: 'https://preview.commerceservicesdevops.ibmcloud.com',
                 productCategory: '10023',
                 productCatalogId: '10502',
@@ -120,7 +125,7 @@
                     .then((response) => {
                         this.products = response.data;
                     }).catch(() => {
-                        this.products = null;
+                        this.remoteFail = true;
                         getLocalData();
                     }).finally(() => {
                         this.loading = false;
@@ -136,6 +141,7 @@
                         this.errored = true;
                     }).finally(() => {
                         this.loading = false;
+                        this.remoteFail = false;
                     });
             }
             getRemoteData();
