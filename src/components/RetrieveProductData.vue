@@ -100,7 +100,7 @@
                 } if (value === 'YEN') {
                     return '¥';
                 }
-                return '';
+                return value;
             },
         },
         data() {
