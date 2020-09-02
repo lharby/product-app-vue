@@ -111,15 +111,34 @@
             };
         },
         mounted() {
-            axios
-                .get(testData)
-                .then((response) => {
-                    this.products = response.data;
-                }).catch(() => {
-                    this.errored = true;
-                }).finally(() => {
-                    this.loading = false;
-                });
+            // retrieve remove data
+            const getRemoteData = () => {
+                axios
+                    .get(
+                        `https://www.demo.salmon-gcp.com/search/resources/store/1/productview/byCategory/${this.productCategory}?langId=-1&catalogId=${this.productCatalogId}&currency=${this.productCurrency}&responseFormat=json`
+                    )
+                    .then((response) => {
+                        this.products = response.data;
+                    }).catch(() => {
+                        this.products = null;
+                        getLocalData();
+                    }).finally(() => {
+                        this.loading = false;
+                    });
+            }
+            // if remote fails load local data
+            const getLocalData = () => {
+                axios
+                    .get(testData)
+                    .then((response) => {
+                        this.products = response.data;
+                    }).catch(() => {
+                        this.errored = true;
+                    }).finally(() => {
+                        this.loading = false;
+                    });
+            }
+            getRemoteData();
         },
     };
 </script>

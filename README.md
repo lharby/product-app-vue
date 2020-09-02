@@ -1,8 +1,3 @@
-```diff
-- Currently borked
-! Requires update to API method
-```
-
 # product-app
 An application which returns products from an API.
 
