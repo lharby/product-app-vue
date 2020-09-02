@@ -13,7 +13,7 @@ describe('RetrieveProductData.vue', () => {
     const wrapper = shallowMount(RetrieveProductData);
     wrapper.setData({
       errored: true,
-      loading: false
+      loading: false,
     });
     const errorMessage = wrapper.find('.error-message');
     expect((errorMessage).exists()).toBeTruthy();
@@ -23,7 +23,7 @@ describe('RetrieveProductData.vue', () => {
   it('should not show an error html element', () => {
     const wrapper = shallowMount(RetrieveProductData);
     wrapper.setData({
-      errored: false
+      errored: false,
     });
     expect(wrapper.find('.error-message').exists()).toBe(false);
   });

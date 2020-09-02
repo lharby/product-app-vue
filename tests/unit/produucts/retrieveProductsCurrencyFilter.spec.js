@@ -1,5 +1,6 @@
 
 import mockData from './data/mockData.json';
+
 const records = mockData.catalogEntryView;
 
 function returnCurrencySymbol(value) {
@@ -11,7 +12,7 @@ function returnCurrencySymbol(value) {
     return '&yen;';
   }
   return value;
-};
+}
 
 describe('Return call should read different currencies', () => {
   it('should return a currency value from the data', () => {

@@ -1,6 +1,8 @@
 <template>
     <div class="RetrieveProductData wrapper">
-        <p class="alignC">Tablets</p>
+        <p class="alignC">
+            Tablets
+        </p>
         <section
             v-if="errored"
             class="error-message"
@@ -10,15 +12,28 @@
         <section v-else>
             <p
                 v-if="loading"
-                class="loading">
+                class="loading"
+            >
                 Loading ...
             </p>
-            <ul v-else class="clearfix">
+            <ul
+                v-else
+                class="clearfix"
+            >
                 <li>
                     <ul class="el el-2 filters">
-                        <li class="title">Filters</li>
+                        <li class="title">
+                            Filters
+                        </li>
                         <li><a href="#">Desktops</a></li>
-                        <li><a href="#" class="active">Tablets</a></li>
+                        <li>
+                            <a
+                                href="#"
+                                class="active"
+                            >
+                                Tablets
+                            </a>
+                        </li>
                         <li><a href="#">Mobile phones</a></li>
                         <li><a href="#">Accessories</a></li>
                     </ul>
@@ -27,24 +42,32 @@
                     <ul class="el el-10">
                         <li
                             v-for="items in products.catalogEntryView"
-                            v-bind:key="items.uniqueID"
+                            :key="items.uniqueID"
                             class="el el-3"
                         >
                             <a :href="items.resourceId">
-                                <img class="" :src="rootDir + items.thumbnail" :alt="items.name" />
+                                <img
+                                    :src="rootDir + items.thumbnail"
+                                    :alt="items.name"
+                                >
                             </a>
-                            <a class="product-name" :href="items.resourceId">
+                            <a
+                                class="product-name"
+                                :href="items.resourceId"
+                            >
                                 {{ items.name }}
                             </a>
-                            <p>Retail price
+                            <p>
+                                Retail price
                                 <span class="currency-symbol">
-                                {{ items.price[0].currency | returnCurrencySymbol }}
+                                    {{ items.price[0].currency | returnCurrencySymbol }}
                                 </span>
                                 {{ items.price[0].value }}
                             </p>
-                            <p class="sale">Sale price
+                            <p class="sale">
+                                Sale price
                                 <span class="currency-symbol">
-                                {{ items.price[1].currency | returnCurrencySymbol }}
+                                    {{ items.price[1].currency | returnCurrencySymbol }}
                                 </span>
                                 {{ items.price[1].value }}
                             </p>
@@ -55,6 +78,7 @@
         </section>
     </div>
 </template>
+
 <script>
     import axios from 'axios';
 
@@ -62,6 +86,19 @@
 
     export default {
         name: 'RetrieveProductData',
+
+        filters: {
+            returnCurrencySymbol(value) {
+                if (value === 'USD') {
+                    return '$';
+                } if (value === 'GBP') {
+                    return '£';
+                } if (value === 'YEN') {
+                    return '¥';
+                }
+                return '';
+            },
+        },
         data() {
             return {
                 products: null,
@@ -73,30 +110,16 @@
                 productCurrency: 'USD',
             };
         },
-        filters: {
-            returnCurrencySymbol(value) {
-                if (value === 'USD') {
-                    return '$';
-                } if (value === 'GBP') {
-                    return '£';
-                } if (value === 'YEN') {
-                    return '¥';
-                } else {
-                    return '';
-                }
-                return value;
-            },
-        },
         mounted() {
             axios
-            .get(testData)
-            .then((response) => {
-                this.products = response.data;
-            }).catch(() => {
-                this.errored = true;
-            }).finally(() => {
-                this.loading = false;
-            });
+                .get(testData)
+                .then((response) => {
+                    this.products = response.data;
+                }).catch(() => {
+                    this.errored = true;
+                }).finally(() => {
+                    this.loading = false;
+                });
         },
     };
 </script>
@@ -127,6 +150,7 @@
     }
 
     @include tablet($tablet-size) {
+
         .RetrieveProductData {
 
             img {

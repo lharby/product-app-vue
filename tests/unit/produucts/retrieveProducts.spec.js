@@ -1,5 +1,6 @@
 
 import mockData from './data/mockData.json';
+
 const records = mockData.catalogEntryView;
 
 describe('Return data from api', () => {
