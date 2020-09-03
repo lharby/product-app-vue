@@ -40,7 +40,10 @@
                 </li>
                 <li>
                     <ul class="el el-10 products-wrapper">
-                        <li v-if="remoteFail">
+                        <li
+                            v-if="remoteFail"
+                            class="error-message"
+                        >
                             Sorry, could not retrieve remote data
                         </li>
                         <li
