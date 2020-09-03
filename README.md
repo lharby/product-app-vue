@@ -1,5 +1,5 @@
 # product-app
-An application which returns products from an API.
+An application which returns products from an API. It should call an api endpoint, if that fails it will retrieve data from a local store.
 
 # Prerequisites
 - node

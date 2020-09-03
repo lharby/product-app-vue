@@ -39,7 +39,7 @@
                     </ul>
                 </li>
                 <li>
-                    <ul class="el el-10">
+                    <ul class="el el-10 products-wrapper">
                         <li v-if="remoteFail">
                             Some error
                         </li>
@@ -85,8 +85,8 @@
 
 <script>
     import axios from 'axios';
-
-    const testData = '../data/mockData.json';
+    const testDataRemote = 'https://raw.githubusercontent.com/lukeharbyakqa/store/master/db.json';
+    const testDataLocal = '../data/mockData.json';
 
     export default {
         name: 'RetrieveProductData',
@@ -119,9 +119,7 @@
             // retrieve remove data
             const getRemoteData = () => {
                 axios
-                    .get(
-                        `https://www.demo.salmon-gcp.com/search/resources/store/1/productview/byCategory/${this.productCategory}?langId=-1&catalogId=${this.productCatalogId}&currency=${this.productCurrency}&responseFormat=json`
-                    )
+                    .get(testDataRemote)
                     .then((response) => {
                         this.products = response.data;
                     }).catch(() => {
@@ -134,7 +132,7 @@
             // if remote fails load local data
             const getLocalData = () => {
                 axios
-                    .get(testData)
+                    .get(testDataLocal)
                     .then((response) => {
                         this.products = response.data;
                     }).catch(() => {
@@ -159,6 +157,10 @@
     }
 
     .RetrieveProductData {
+
+        .products-wrapper li {
+            margin-bottom: 3rem;
+        }
 
         .sale {
             color: $orange;

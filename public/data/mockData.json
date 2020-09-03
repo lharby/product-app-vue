@@ -42,7 +42,7 @@
          "thumbnail":"/wcsstore/ExtendedSitesCatalogAssetStore/images/catalog/electronics/cta023_tablets/200x310/cta023_2301.jpg",
          "buyable":"true",
          "storeID":"10501",
-         "name":"Reading Tablet",
+         "name":"Local Reading Tablet",
          "parentCatalogGroupID":[
             "10001_10023",
             "10502_10023"
