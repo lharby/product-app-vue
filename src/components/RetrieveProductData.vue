@@ -41,7 +41,7 @@
                 <li>
                     <ul class="el el-10 products-wrapper">
                         <li v-if="remoteFail">
-                            Some error
+                            Sorry, could not retrieve remote data
                         </li>
                         <li
                             v-for="items in products.catalogEntryView"
@@ -116,7 +116,7 @@
             };
         },
         mounted() {
-            // retrieve remove data
+            // retrieve remote data
             const getRemoteData = () => {
                 axios
                     .get(testDataRemote)
